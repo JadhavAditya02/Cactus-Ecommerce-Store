@@ -11,6 +11,5 @@ name = "javascript"
   plugins = ["react"]
   environment = [
     "nodejs",
-    "mongo",
-    "browser"
+    "mongo"
   ]
