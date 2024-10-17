@@ -1,6 +1,5 @@
 import { ShoppingCart, UserPlus, LogIn, LogOut, Lock, Menu, X } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
-import React, { useState } from 'react';
 import { useUserStore } from "../stores/useUserStore";
 import { useCartStore } from "../stores/useCartStore";
 

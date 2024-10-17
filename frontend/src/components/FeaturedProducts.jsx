@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { ShoppingCart, ChevronLeft, ChevronRight } from "lucide-react";
 import { useCartStore } from "../stores/useCartStore";
-import { Link, useNavigate } from "react-router-dom"; // Import Link and useNavigate from react-router-dom
+import { useNavigate } from "react-router-dom"; // Import Link and useNavigate from react-router-dom
 import { useUserStore } from "../stores/useUserStore"; // Make sure to import the user store
 
 const FeaturedProducts = ({ featuredProducts }) => {

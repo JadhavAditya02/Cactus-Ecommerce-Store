@@ -1,4 +1,3 @@
-import React from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import { useProductStore } from '../stores/useProductStore';
 import ProductCard from './ProductCard'; // Import the ProductCard component

@@ -7,7 +7,7 @@ import LoadingSpinner from "./LoadingSpinner";
 const PeopleAlsoBought = () => {
   const [recommendations, setRecommendations] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(5);
 
   useEffect(() => {
