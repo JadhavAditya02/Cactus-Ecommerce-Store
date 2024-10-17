@@ -7,7 +7,7 @@ This project is a full-featured e-commerce platform that integrates with modern 
 
 
 ##
-![Demo App](/frontend/public/ss-for-readme.jpeg)
+![Demo App](/frontend/public/ss-for-readme.JPEG)
 
 
 
