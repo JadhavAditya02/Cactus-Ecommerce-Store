@@ -8,20 +8,20 @@ import ProductCard from "../components/ProductCard";
 import { motion } from "framer-motion"; // Importing framer-motion for animations
 
 const categories = [
-  { href: "/caps", name: "CAPS & HATS", imageUrl: "/collections/all-cap.avif" },
-  { href: "/skateboards", name: "SKATEBOARDS", imageUrl: "/collections/all-skateboards.avif" },
-  { href: "/backpacks", name: "BACKPACKS", imageUrl: "/collections/all-backpack.avif" },
-  { href: "/clothes", name: "CLOTHES", imageUrl: "/collections/clothes.avif" },
-  { href: "/shirts", name: "SHIRTS", imageUrl: "/collections/all-shirts.avif" },
-  { href: "/hoodie", name: "HOODIE", imageUrl: "/collections/all-hoodie.avif" },
-  { href: "/bottoms", name: "BOTTOM", imageUrl: "/collections/all-bottom.avif" },
-  { href: "/boxers", name: "BOXER", imageUrl: "/collections/all-boxers.avif" },
-  { href: "/t-shirts", name: "T-SHIRT", imageUrl: "/collections/all-tshirt.webp" },
-  { href: "/socks", name: "SOCKS", imageUrl: "/collections/all-socks.webp" },
-  { href: "/eyewears", name: "EYEWEAR", imageUrl: "/collections/all-eyewear.webp" },
-  { href: "/wallets", name: "WALLET", imageUrl: "/collections/all-accessories.webp" },
+  { href: "/caps", name: "CAPS & HATS", imageUrl: "https://res.cloudinary.com/daqetpo5k/image/upload/v1729232400/d7b7zjaxtmd9lzgpmmis.avif" },
+  { href: "/skateboards", name: "SKATEBOARDS", imageUrl: "https://res.cloudinary.com/daqetpo5k/image/upload/v1729232401/gbsgwupb2ch8s6njc2f3.avif" },
+  { href: "/backpacks", name: "BACKPACKS", imageUrl: "https://res.cloudinary.com/daqetpo5k/image/upload/v1729232400/bxdo5dlxtqypjzozvd8t.avif" },
+  { href: "/clothes", name: "CLOTHES", imageUrl: "https://res.cloudinary.com/daqetpo5k/image/upload/v1729232403/xibuhiipfidh4bek8wrw.avif" },
+  { href: "/shirts", name: "SHIRTS", imageUrl: "https://res.cloudinary.com/daqetpo5k/image/upload/v1729232401/yehrer4pnt4ubgevzmd5.avif" },
+  { href: "/hoodie", name: "HOODIE", imageUrl: "https://res.cloudinary.com/daqetpo5k/image/upload/v1729232401/reudvi8uzwfne1fhska5.avif" },
+  { href: "/bottoms", name: "BOTTOM", imageUrl: "https://res.cloudinary.com/daqetpo5k/image/upload/v1729232400/pvkvadfpyrrhaovikjyg.avif" },
+  { href: "/boxers", name: "BOXER", imageUrl: "https://res.cloudinary.com/daqetpo5k/image/upload/v1729232400/zhnebnfjsdqbgpblljb9.avif" },
+  { href: "/t-shirts", name: "T-SHIRT", imageUrl: "https://res.cloudinary.com/daqetpo5k/image/upload/v1729232402/aag6a9vi3ojy5opufmhv.webp" },
+  { href: "/socks", name: "SOCKS", imageUrl: "https://res.cloudinary.com/daqetpo5k/image/upload/v1729232402/x1eecjvyomxl3krputqq.webp" },
+  { href: "/eyewears", name: "EYEWEAR", imageUrl: "https://res.cloudinary.com/daqetpo5k/image/upload/v1729232400/gyovnjyzpxloujmddj1j.webp" },
+  { href: "/wallets", name: "WALLET", imageUrl: "https://res.cloudinary.com/daqetpo5k/image/upload/v1729232400/yimamjz2dwj3genxsm0f.webp" },
   { href: "/watches", name: "WATCH", imageUrl: "https://res.cloudinary.com/daqetpo5k/image/upload/v1729232403/s9xer3eaexry8qnbgvsg.svg" },
-  { href: "/accessories", name: "ACCESSORIES", imageUrl: "/collections/all-wallet.svg" },
+  { href: "/accessories", name: "ACCESSORIES", imageUrl: "https://res.cloudinary.com/daqetpo5k/image/upload/v1729232403/wa0wrmrwlkwlk6h6xqyh.svg" },
 ];
 
 const HomePage = () => {
@@ -65,7 +65,11 @@ const HomePage = () => {
     <div className="relative min-h-screen text-white overflow-hidden">
       <div className="relative z-10 mx-auto my-4 max-w-full rounded-lg overflow-hidden shadow-lg">
         <Slider {...sliderSettings}>
-          {["/banner-3.jpg", "/MENS-HAT.webp", "/eyewear.webp"].map((src, index) => (
+          {[
+            "https://res.cloudinary.com/daqetpo5k/image/upload/v1729255971/banner-3_dgnidg.jpg",
+            "https://res.cloudinary.com/daqetpo5k/image/upload/v1729232464/hkzpskeofgzgoudasmr9.webp",
+            "https://res.cloudinary.com/daqetpo5k/image/upload/v1729232447/pwkuy44huxrq63vqcxrn.webp",
+          ].map((src, index) => (
             <div className="h-[33rem]" key={index}>
               <a href={`/category/${index === 0 ? 'clothes' : index === 1 ? 'caps' : 'eyewears'}`} rel="noopener noreferrer">
                 <img src={src} alt={`Slide ${index + 1}`} className="w-full h-full object-cover" />
