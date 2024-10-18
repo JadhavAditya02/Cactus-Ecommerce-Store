@@ -8,20 +8,20 @@ import ProductCard from "../components/ProductCard";
 import { motion } from "framer-motion"; // Importing framer-motion for animations
 
 const categories = [
-  { href: "/caps", name: "CAPS & HATS", imageUrl: "./src/collections/all-cap.avif" },
-  { href: "/skateboards", name: "SKATEBOARDS", imageUrl: "./src/collections/all-skateboards.avif" },
-  { href: "/backpacks", name: "BACKPACKS", imageUrl: "./src/collections/all=backpack.avif" },
-  { href: "/clothes", name: "CLOTHES", imageUrl: "./src/collections/clothes.avif" },
-  { href: "/shirts", name: "SHIRTS", imageUrl: "./src/collections/all-shirts.avif" },
-  { href: "/hoodie", name: "HOODIE", imageUrl: "./src/collections/all-hoodie.avif" },
-  { href: "/bottoms", name: "BOTTOM", imageUrl: "./src/collections/all-bottom.avif" },
-  { href: "/boxers", name: "BOXER", imageUrl: "./src/collections/all-boxers.avif" },
-  { href: "/t-shirts", name: "T-SHIRT", imageUrl: "./src/collections/all-tshirt.webp" },
-  { href: "/socks", name: "SOCKS", imageUrl: "./src/collections/all-socks.webp" },
-  { href: "/eyewears", name: "EYEWEAR", imageUrl: "./src/collections/all-eyewear.webp" },
-  { href: "/wallets", name: "WALLET", imageUrl: "./src/collections/all-acessories.webp" },
-  { href: "/watches", name: "WATCH", imageUrl: "./src/collections/all-watch.svg" },
-  { href: "/accessories", name: "ACCESSORIES", imageUrl: "./src/collections/all-wallet.svg" },
+  { href: "/caps", name: "CAPS & HATS", imageUrl: "/collections/all-cap.avif" },
+  { href: "/skateboards", name: "SKATEBOARDS", imageUrl: "/collections/all-skateboards.avif" },
+  { href: "/backpacks", name: "BACKPACKS", imageUrl: "/collections/all-backpack.avif" },
+  { href: "/clothes", name: "CLOTHES", imageUrl: "/collections/clothes.avif" },
+  { href: "/shirts", name: "SHIRTS", imageUrl: "/collections/all-shirts.avif" },
+  { href: "/hoodie", name: "HOODIE", imageUrl: "/collections/all-hoodie.avif" },
+  { href: "/bottoms", name: "BOTTOM", imageUrl: "/collections/all-bottom.avif" },
+  { href: "/boxers", name: "BOXER", imageUrl: "/collections/all-boxers.avif" },
+  { href: "/t-shirts", name: "T-SHIRT", imageUrl: "/collections/all-tshirt.webp" },
+  { href: "/socks", name: "SOCKS", imageUrl: "/collections/all-socks.webp" },
+  { href: "/eyewears", name: "EYEWEAR", imageUrl: "/collections/all-eyewear.webp" },
+  { href: "/wallets", name: "WALLET", imageUrl: "/collections/all-accessories.webp" },
+  { href: "/watches", name: "WATCH", imageUrl: "/collections/all-watch.svg" },
+  { href: "/accessories", name: "ACCESSORIES", imageUrl: "/collections/all-wallet.svg" },
 ];
 
 const HomePage = () => {
