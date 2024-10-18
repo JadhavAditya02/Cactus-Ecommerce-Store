@@ -62,7 +62,7 @@ const ProductDetail = () => {
                     transition={{ duration: 0.5 }} 
                 >
                     <h1 className="text-2xl sm:text-3xl font-bold mb-2">{product.name}</h1>
-                    <p className="text-base sm:text-lg text-gray-800 mb-4">{product.description}</p>
+                    <p className="text-base sm:text-lg text-white-800 mb-4">{product.description}</p>
                     <p className="text-xl sm:text-2xl font-bold text-emerald-400">₹{product.price.toFixed(2)}</p>
                     <motion.button
                         className="mt-6 w-full sm:w-1/2 md:w-1/4 flex items-center justify-center bg-emerald-600 text-white px-4 py-3 rounded-lg hover:bg-emerald-700 transition duration-300"
