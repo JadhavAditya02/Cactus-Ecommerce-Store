@@ -20,7 +20,7 @@ const categories = [
   { href: "/socks", name: "SOCKS", imageUrl: "/collections/all-socks.webp" },
   { href: "/eyewears", name: "EYEWEAR", imageUrl: "/collections/all-eyewear.webp" },
   { href: "/wallets", name: "WALLET", imageUrl: "/collections/all-accessories.webp" },
-  { href: "/watches", name: "WATCH", imageUrl: "/collections/all-watch.svg" },
+  { href: "/watches", name: "WATCH", imageUrl: "https://res.cloudinary.com/daqetpo5k/image/upload/v1729232403/s9xer3eaexry8qnbgvsg.svg" },
   { href: "/accessories", name: "ACCESSORIES", imageUrl: "/collections/all-wallet.svg" },
 ];
 
