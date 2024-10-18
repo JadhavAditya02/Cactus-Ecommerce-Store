@@ -4,11 +4,14 @@ import { Link } from "react-router-dom";
 import { MoveRight } from "lucide-react";
 import { loadStripe } from "@stripe/stripe-js";
 import axios from "../lib/axios";
+import { useState } from "react";
 
 const stripePromise = loadStripe("pk_test_51Krg9zSAGXpA4N1Y78DakJDAmmEv7HQlhaUwyDfLmR4OeSee35FaUDjqKjBpEZ4zpZ0S9sTlFCY3s5mYTpeLtrvp00FlB91A4H");
 
 const OrderSummary = () => {
 	const { total, subtotal, coupon, isCouponApplied, cart } = useCartStore();
+	const [isHovered, setIsHovered] = useState(false); 
+	const [isLoading, setIsLoading] = useState(false); 
 
 	const savings = subtotal - total;
 	const formattedSubtotal = subtotal.toFixed(2);
@@ -17,6 +20,7 @@ const OrderSummary = () => {
 
 	const handlePayment = async () => {
 		const stripe = await stripePromise;
+		setIsLoading(true); // Set loading to true
 		try {
 			const { data: session } = await axios.post("/payments/create-checkout-session", {
 				products: cart,
@@ -30,6 +34,8 @@ const OrderSummary = () => {
 			}
 		} catch (error) {
 			console.error("Payment error:", error);
+		} finally {
+			setIsLoading(false); 
 		}
 	};
 
@@ -70,12 +76,19 @@ const OrderSummary = () => {
 				</div>
 
 				<motion.button
-					className="flex w-full items-center justify-center rounded-lg bg-emerald-600 px-5 py-2.5 text-sm font-medium text-white hover:bg-emerald-700 focus:outline-none focus:ring-4 focus:ring-emerald-300"
-					whileHover={{ scale: 1.05 }}
+					className={`flex w-full items-center justify-center rounded-lg 
+						${isLoading ? "bg-gray-500 cursor-not-allowed" : "bg-emerald-600"} 
+						px-5 py-2.5 text-sm font-medium text-white 
+						${isHovered ? "hover:bg-emerald-700" : ""} 
+						focus:outline-none focus:ring-4 focus:ring-emerald-300`}
+					whileHover={{ scale: isLoading ? 1 : 1.05 }} 
 					whileTap={{ scale: 0.95 }}
-					onClick={handlePayment}
+					onClick={isLoading ? null : handlePayment} 
+					onMouseEnter={() => setIsHovered(true)}
+					onMouseLeave={() => setIsHovered(false)}
+					disabled={isLoading} 
 				>
-					Proceed to Checkout
+					{isLoading ? "Processing..." : "Proceed to Checkout"}
 				</motion.button>
 
 				<div className="flex items-center justify-center gap-2">

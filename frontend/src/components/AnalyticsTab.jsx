@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "../lib/axios";
 import { Users, Package, ShoppingCart, IndianRupee } from "lucide-react";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
+import LoadingSpinner from "./LoadingSpinner"; // Import your loading spinner component
 
 const AnalyticsTab = () => {
   const [analyticsData, setAnalyticsData] = useState({
@@ -16,6 +17,7 @@ const AnalyticsTab = () => {
 
   useEffect(() => {
     const fetchAnalyticsData = async () => {
+      setIsLoading(true); // Set loading state at the start
       try {
         const { data } = await axios.get("/analytics");
         setAnalyticsData(data.analyticsData);
@@ -23,14 +25,20 @@ const AnalyticsTab = () => {
       } catch (error) {
         console.error("Error fetching analytics data:", error);
       } finally {
-        setIsLoading(false);
+        setIsLoading(false); // Set loading state to false when done
       }
     };
 
     fetchAnalyticsData();
   }, []);
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <LoadingSpinner /> {/* Custom spinner component */}
+      </div>
+    );
+  }
 
   const analyticsCards = [
     { title: "Total Users", value: analyticsData.users, icon: Users, color: 'from-emerald-500 to-teal-700' },
@@ -86,8 +94,6 @@ const AnalyticsTab = () => {
   );
 };
 
-export default AnalyticsTab;
-
 const AnalyticsCard = ({ title, value, icon: Icon, color }) => (
   <motion.div
     className={`bg-gray-800 rounded-lg p-6 shadow-lg overflow-hidden relative ${color}`}
@@ -107,3 +113,5 @@ const AnalyticsCard = ({ title, value, icon: Icon, color }) => (
     </div>
   </motion.div>
 );
+
+export default AnalyticsTab;

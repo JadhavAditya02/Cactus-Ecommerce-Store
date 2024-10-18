@@ -28,7 +28,6 @@ const ProductDetail = () => {
             return;
         }
         addToCart(product);
-        toast.success("Product added to cart!", { id: "addToCart" });
     };
 
     if (loading) {

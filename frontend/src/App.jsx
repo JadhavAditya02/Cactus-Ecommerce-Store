@@ -20,6 +20,7 @@ import { useCartStore } from "./stores/useCartStore";
 import PurchaseSuccessPage from "./pages/PurchaseSuccessPage";
 import PurchaseCancelPage from "./pages/PurchaseCancelPage";
 import ProductDetail from "./components/ProductDetail";
+import PeopleAlsoBought from "./components/PeopleAlsoBought";
 import SearchResults from "./components/SearchResults.jsx";
 
 function App() {
@@ -60,6 +61,7 @@ function App() {
           <Route path="/login" element={!user ? <LoginPage /> : <Navigate to="/" />} />
           <Route path="/secret-dashboard" element={user?.role === "admin" ? <AdminPage /> : <Navigate to="/login" />} />
           <Route path="/category/:category" element={<CategoryPage />} />
+          <Route path="/people-also-bought" element={<PeopleAlsoBought />} />
           <Route path="/product/:productId" element={<ProductDetail />} />
           <Route path="/cart" element={user ? <CartPage /> : <Navigate to="/login" />} />
           <Route path="/purchase-success" element={user ? <PurchaseSuccessPage /> : <Navigate to="/login" />} />

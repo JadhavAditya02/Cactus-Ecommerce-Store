@@ -32,9 +32,6 @@ export const useProductStore = create((set) => ({
         } catch (error) {
             set({ loading: false });
             const { user } = useUserStore.getState();
-            if (user) {
-                toast.error(error.response?.data?.error || "Failed to fetch products");
-            }
         }
     },
 
@@ -89,7 +86,6 @@ export const useProductStore = create((set) => ({
         } catch (error) {
             set({ loading: false });
             console.log("Error fetching featured products:", error);
-            toast.error("Failed to fetch featured products");
         }
     },
 }));

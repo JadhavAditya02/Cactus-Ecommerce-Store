@@ -5,6 +5,7 @@ import { useCartStore } from "../stores/useCartStore";
 const GiftCouponCard = () => {
   const [userInputCode, setUserInputCode] = useState("");
   const { coupon, isCouponApplied, applyCoupon, getMyCoupon, removeCoupon } = useCartStore();
+  const [isHovered, setIsHovered] = useState(false); 
 
   useEffect(() => {
     getMyCoupon();
@@ -53,12 +54,15 @@ const GiftCouponCard = () => {
         {/* Apply Coupon Button with Hover and Tap Animation */}
         <motion.button
           type="button"
-          className="flex w-full items-center justify-center rounded-lg bg-emerald-600 
-              px-5 py-2.5 text-sm font-medium text-white hover:bg-emerald-700 
-              focus:outline-none focus:ring-4 focus:ring-emerald-300 transition-transform duration-300"
+          className={`flex w-full items-center justify-center rounded-lg 
+            ${isHovered ? "bg-emerald-700" : "bg-emerald-600"} 
+            px-5 py-2.5 text-sm font-medium text-white focus:outline-none 
+            focus:ring-4 focus:ring-emerald-300 transition-transform duration-300`}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={handleApplyCoupon}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
         >
           Apply Code
         </motion.button>
