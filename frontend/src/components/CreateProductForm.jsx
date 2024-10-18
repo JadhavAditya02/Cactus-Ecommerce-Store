@@ -13,7 +13,7 @@ const CreateProductForm = () => {
     name: "",
     description: "",
     price: "",
-    category: [], // Keeping category as an array
+    category: [], 
     image: "",
   });
   const [error, setError] = useState("");
@@ -22,17 +22,15 @@ const CreateProductForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validate required fields
     if (!newProduct.name || !newProduct.description || !newProduct.price || newProduct.category.length === 0 || !newProduct.image) {
       setError("Please fill all the required fields.");
       return;
     }
 
-    setError(""); // Clear previous errors
+    setError(""); 
 
     try {
       await createProduct(newProduct);
-      // Reset form after successful product creation
       setNewProduct({
         name: "",
         description: "",
@@ -52,7 +50,7 @@ const CreateProductForm = () => {
       reader.onloadend = () => {
         setNewProduct({ ...newProduct, image: reader.result });
       };
-      reader.readAsDataURL(file); // base64
+      reader.readAsDataURL(file); 
     }
   };
 
@@ -71,7 +69,7 @@ const CreateProductForm = () => {
       className="bg-gray-800 shadow-lg rounded-lg p-8 mb-8 max-w-xl mx-auto"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, ease: "easeInOut" }} // Smooth animation for form appearance
+      transition={{ duration: 0.8, ease: "easeInOut" }} 
     >
       <h2 className="text-2xl font-semibold mb-6 text-emerald-300">
         Create New Product
@@ -94,7 +92,7 @@ const CreateProductForm = () => {
             className="mt-1 block w-full bg-gray-700 border border-gray-600 rounded-md shadow-sm py-2
               px-3 text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
             required
-            whileFocus={{ scale: 1.05 }} // Add scale effect on focus
+            whileFocus={{ scale: 1.05 }} 
           />
         </div>
 
@@ -134,7 +132,7 @@ const CreateProductForm = () => {
             className="mt-1 block w-full bg-gray-700 border border-gray-600 rounded-md shadow-sm 
               py-2 px-3 text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
             required
-            whileFocus={{ scale: 1.05 }} // Add scale effect on focus
+            whileFocus={{ scale: 1.05 }} 
           />
         </div>
 
@@ -153,7 +151,7 @@ const CreateProductForm = () => {
                   checked={newProduct.category.includes(category)}
                   onChange={() => handleCategoryChange(category)}
                   className="form-checkbox h-4 w-4 text-emerald-600 transition duration-150 ease-in-out"
-                  whileHover={{ scale: 1.1 }} // Small hover animation
+                  whileHover={{ scale: 1.1 }} 
                 />
                 <span className="ml-2">{category}</span>
               </label>
@@ -192,7 +190,7 @@ const CreateProductForm = () => {
             shadow-sm text-sm font-medium text-white bg-emerald-600 hover:bg-emerald-700 
             focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 disabled:opacity-50"
           disabled={loading}
-          whileTap={{ scale: 0.95 }} // Button press effect
+          whileTap={{ scale: 0.95 }} 
         >
           {loading ? (
             <>
@@ -208,7 +206,6 @@ const CreateProductForm = () => {
         </motion.button>
       </form>
 
-      {/* Hide arrows in number input fields */}
       <style jsx>{`
         input[type='number']::-webkit-inner-spin-button,
         input[type='number']::-webkit-outer-spin-button {

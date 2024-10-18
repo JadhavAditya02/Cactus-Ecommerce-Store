@@ -43,7 +43,6 @@ const Footer = () => {
     <footer className="bg-gray-800 text-white py-8">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Logo and Description */}
           <div>
             <h3 className="text-xl font-bold mb-4 hover:scale-105 transform transition duration-300">
               CACTUS
@@ -51,7 +50,6 @@ const Footer = () => {
             <p className="text-gray-400">Fashion That Grows With You.</p>
           </div>
 
-          {/* Contact Section */}
           <div>
             <h4 className="text-lg font-semibold mb-4 hover:scale-105 transform transition duration-300">
               Contact Us
@@ -75,7 +73,6 @@ const Footer = () => {
             </address>
           </div>
 
-          {/* Quick Links */}
           <div>
             <h4 className="text-lg font-semibold mb-4 hover:scale-105 transform transition duration-300">
               Quick Links
@@ -89,7 +86,6 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Social Links */}
           <div>
             <h4 className="text-lg font-semibold mb-4 hover:scale-105 transform transition duration-300">
               Follow Us
@@ -103,7 +99,6 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Store Locator */}
           <div>
             <h4 className="text-lg font-semibold mb-4 hover:scale-105 transform transition duration-300">
               Store Locator
@@ -117,7 +112,6 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Legal Section */}
           <div>
             <h4 className="text-lg font-semibold mb-4 hover:scale-105 transform transition duration-300">
               Legal
@@ -132,7 +126,6 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Footer Bottom Section */}
         <div className="mt-8 border-t border-gray-700 pt-4 flex flex-col md:flex-row justify-between items-center">
           <p>© {new Date().getFullYear()} Cactus. All rights reserved.</p>
           <img

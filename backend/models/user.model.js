@@ -61,6 +61,11 @@ const User = mongoose.model("User", userSchema);
 
 export default User;
 
+
+
+
+
+
 // validate: {
 //   validator: function (value) {
 //     const regex =

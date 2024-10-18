@@ -6,23 +6,19 @@ const GiftCouponCard = () => {
   const [userInputCode, setUserInputCode] = useState("");
   const { coupon, isCouponApplied, applyCoupon, getMyCoupon, removeCoupon } = useCartStore();
 
-  // Fetch the user's current coupon when component mounts
   useEffect(() => {
     getMyCoupon();
   }, [getMyCoupon]);
 
-  // Update input code if coupon is already available
   useEffect(() => {
     if (coupon) setUserInputCode(coupon.code);
   }, [coupon]);
 
-  // Handle coupon apply logic
   const handleApplyCoupon = () => {
     if (!userInputCode) return;
     applyCoupon(userInputCode);
   };
 
-  // Handle coupon removal
   const handleRemoveCoupon = async () => {
     await removeCoupon();
     setUserInputCode("");
@@ -82,7 +78,6 @@ const GiftCouponCard = () => {
             {coupon.code} - {coupon.discountPercentage}% off
           </p>
 
-          {/* Remove Coupon Button */}
           <motion.button
             type="button"
             className="mt-2 flex w-full items-center justify-center rounded-lg bg-red-600 
@@ -97,7 +92,6 @@ const GiftCouponCard = () => {
         </motion.div>
       )}
 
-      {/* Show available coupon details */}
       {coupon && !isCouponApplied && (
         <motion.div
           className="mt-4"

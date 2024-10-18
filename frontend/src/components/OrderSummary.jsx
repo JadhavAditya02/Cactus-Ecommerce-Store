@@ -13,7 +13,7 @@ const OrderSummary = () => {
 	const savings = subtotal - total;
 	const formattedSubtotal = subtotal.toFixed(2);
 	const formattedTotal = total.toFixed(2);
-	const formattedSavings = savings > 0 ? savings.toFixed(2) : "0.00"; // Ensure savings is always formatted
+	const formattedSavings = savings > 0 ? savings.toFixed(2) : "0.00"; 
 
 	const handlePayment = async () => {
 		const stripe = await stripePromise;

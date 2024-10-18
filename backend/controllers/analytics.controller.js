@@ -64,11 +64,11 @@ export const getDailySalesData = async (startDate, endDate) => {
     );
 
     return dateArray.map((date) => {
-      const foundData = salesDataMap.get(date) || { sales: 0, revenue: 0 };
+      const { sales = 0, revenue = 0 } = salesDataMap.get(date) || {};
       return {
         date,
-        sales: foundData.sales,
-        revenue: foundData.revenue,
+        sales,
+        revenue,
       };
     });
   } catch (error) {

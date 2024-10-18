@@ -4,7 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { useUserStore } from "../stores/useUserStore";
 import { useCartStore } from "../stores/useCartStore";
 
-// Navbar
 const Navbar = () => {
   const { user, logout } = useUserStore();
   const isAdmin = user?.role === "admin";
@@ -22,7 +21,6 @@ const Navbar = () => {
     }
   };
 
-  // Dropdown for Apparels
   const ApparelsDropdown = () => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
@@ -35,12 +33,11 @@ const Navbar = () => {
         onMouseEnter={handleMouseEnter} 
         onMouseLeave={handleMouseLeave}
       >
-        {/* Dropdown Button */}
+
         <button className="text-gray-300 hover:text-emerald-400 transition duration-300 ease-in-out">
           APPARELS
         </button>
 
-        {/* Dropdown Menu */}
         {isDropdownOpen && (
           <div className="absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-md transition-opacity duration-300 ease-in-out opacity-100">
             <Link 
@@ -63,12 +60,10 @@ const Navbar = () => {
     );
   };
 
-  // Toggle mobile menu
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(prev => !prev);
   };
 
-  // Optimize useEffect for window resize event listener (optional)
   const handleResize = useCallback(() => {
     if (window.innerWidth >= 768) {
       setIsMobileMenuOpen(false);
@@ -86,6 +81,7 @@ const Navbar = () => {
     <header className="fixed top-0 left-0 w-full bg-gray-900 bg-opacity-90 backdrop-blur-md shadow-lg z-40 transition-all duration-300 border-b border-emerald-800">
       <div className="container mx-auto px-4 py-3">
         <div className="flex flex-wrap justify-between items-center">
+
           {/* Left Column */}
           <div className="flex items-center space-x-4"> 
             <Link
@@ -95,7 +91,6 @@ const Navbar = () => {
               Cactus
             </Link>
 
-            {/* Navigation Links */}
             <nav className="hidden md:flex items-center gap-4 mt-1">
               <Link to={"/"} className="text-gray-300 hover:text-emerald-400 transition duration-300 ease-in-out">
                 HOME
@@ -121,12 +116,10 @@ const Navbar = () => {
 
           {/* Right Column */}
           <div className="flex items-center gap-4">
-            {/* Hamburger Icon */}
             <button className="md:hidden text-gray-300 hover:text-emerald-400 transition duration-300" onClick={toggleMobileMenu}>
               {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
 
-            {/* Search Box for Desktop */}
             <form onSubmit={handleSearchSubmit} className="hidden md:flex items-center">
               <input
                 type="text"

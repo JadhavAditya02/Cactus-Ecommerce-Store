@@ -13,6 +13,7 @@ export const getCoupon = async (req, res) => {
       userId: req.user._id,
       isActive: true,
     });
+
     res.json(coupon || null);
   } catch (error) {
     handleError(res, error, "Error in getCoupon controller");
@@ -34,6 +35,7 @@ export const validateCoupon = async (req, res) => {
       return res.status(404).json({ message: "Coupon not found" });
     }
 
+    // Check expiration date and deactivate if expired
     if (coupon.expirationDate < new Date()) {
       coupon.isActive = false;
       await coupon.save(); // Deactivate expired coupon

@@ -11,7 +11,6 @@ const FeaturedProducts = ({ featuredProducts }) => {
   const { user } = useUserStore();
   const navigate = useNavigate();
 
-  // Update itemsPerPage based on window width dynamically
   useEffect(() => {
     const handleResize = () => {
       const width = window.innerWidth;

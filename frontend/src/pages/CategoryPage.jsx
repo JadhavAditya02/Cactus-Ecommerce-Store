@@ -25,7 +25,6 @@ const CategoryPage = () => {
     setSortOption(e.target.value);
   };
 
-  // Function to sort and filter products
   const getFilteredAndSortedProducts = () => {
     const filteredProducts = products
       .filter((product) => product.price >= minPrice && product.price <= maxPrice)
@@ -33,7 +32,7 @@ const CategoryPage = () => {
         if (sortOption === "priceAsc") return a.price - b.price;
         if (sortOption === "priceDesc") return b.price - a.price;
         if (sortOption === "popularity") return b.popularity - a.popularity;
-        return 0; // Default case (recommended)
+        return 0; 
       });
     
     return filteredProducts;
@@ -53,9 +52,7 @@ const CategoryPage = () => {
           {category.charAt(0).toUpperCase() + category.slice(1)}
         </motion.h1>
 
-        {/* Sort and Filter Options */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 space-y-4 md:space-y-0">
-          {/* Price Range Filter */}
           <div className="flex items-center">
             <label className="mr-2 text-gray-300">Price Range:</label>
             <input
@@ -75,7 +72,6 @@ const CategoryPage = () => {
             />
           </div>
 
-          {/* Sort Options */}
           <div className="flex items-center">
             <label className="mr-2 text-gray-300">Sort by:</label>
             <select
@@ -91,7 +87,6 @@ const CategoryPage = () => {
           </div>
         </div>
 
-        {/* Product Grid */}
         <motion.div
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 justify-items-center"
           initial={{ opacity: 0, y: 20 }}
@@ -109,7 +104,6 @@ const CategoryPage = () => {
           ))}
         </motion.div>
 
-        {/* Load More Button */}
         {filteredAndSortedProducts.length > visibleCount && (
           <div className="flex justify-center mt-8">
             <button

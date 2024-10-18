@@ -3,7 +3,7 @@ import ProductCard from "./ProductCard";
 import axios from "../lib/axios";
 import toast from "react-hot-toast";
 import LoadingSpinner from "./LoadingSpinner";
-import { motion } from "framer-motion"; // Added Framer Motion for animations
+import { motion } from "framer-motion"; 
 
 const PeopleAlsoBought = () => {
   const [recommendations, setRecommendations] = useState([]);
@@ -28,7 +28,6 @@ const PeopleAlsoBought = () => {
     fetchRecommendations();
   }, []);
 
-  // Handle screen resize to adjust items per page
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 640) setItemsPerPage(1);
@@ -37,7 +36,7 @@ const PeopleAlsoBought = () => {
       else setItemsPerPage(4);
     };
 
-    handleResize(); // Initial call to set items per page
+    handleResize(); 
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -60,14 +59,14 @@ const PeopleAlsoBought = () => {
               }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.5 }} // Added animation for opacity
+              transition={{ duration: 0.5 }} 
             >
               {recommendations.map((product) => (
                 <motion.div
                   key={product._id}
                   className="w-full sm:w-1/2 lg:w-1/3 xl:w-[33.5%] flex-shrink-0 px-2"
-                  whileHover={{ scale: 1.05 }} // Added hover effect for cards
-                  whileTap={{ scale: 0.95 }} // Added tap effect for cards
+                  whileHover={{ scale: 1.05 }} 
+                  whileTap={{ scale: 0.95 }} 
                 >
                   <ProductCard product={product} />
                 </motion.div>

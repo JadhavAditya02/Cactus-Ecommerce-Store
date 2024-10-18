@@ -8,10 +8,8 @@ const AboutUs = () => {
       transition={{ duration: 0.5 }}
       className="max-w-4xl mx-auto p-8 pb-20"
     >
-      {/* Title */}
       <h1 className="text-4xl font-bold text-center mb-6">About Us</h1>
 
-      {/* Introductory Paragraph */}
       <p className="text-lg mb-4 text-justify">
         <strong>Cactus</strong> is an educational project and a virtual clothing
         website created for learning and experimentation. Please note that{" "}
@@ -31,9 +29,7 @@ const AboutUs = () => {
         Thank you for being a part of our educational experience!
       </p>
 
-      {/* Frontend, Backend, Hosting in Flexbox */}
       <div className="flex flex-col lg:flex-row justify-between mt-8 space-y-8 lg:space-y-0 lg:space-x-8">
-        {/* Frontend Technologies */}
         <div className="flex-1">
           <h2 className="text-2xl font-semibold mb-4 text-justify">
             Frontend Tech
@@ -47,7 +43,6 @@ const AboutUs = () => {
           </ul>
         </div>
 
-        {/* Backend Technologies */}
         <div className="flex-1">
           <h2 className="text-2xl font-semibold mb-4 text-justify">
             Backend Tech
@@ -62,7 +57,6 @@ const AboutUs = () => {
           </ul>
         </div>
 
-        {/* Hosting Information */}
         <div className="flex-1">
           <h2 className="text-2xl font-semibold mb-4 text-justify">Hosting</h2>
           <ul className="list-disc list-inside space-y-2 text-lg text-justify">
@@ -71,7 +65,6 @@ const AboutUs = () => {
         </div>
       </div>
 
-      {/* Closing Statements */}
       <p className="text-lg font-semibold text-justify mt-8">
         Join us on this simulated journey at <strong>Cactus</strong>, where we
         explore the fascinating blend of style and technology, all for

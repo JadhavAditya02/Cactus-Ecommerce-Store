@@ -1,4 +1,4 @@
-import { motion } from "framer-motion"; // Ensure motion is imported
+import { motion } from "framer-motion"; 
 import { Trash, Star } from "lucide-react";
 import { useProductStore } from "../stores/useProductStore";
 

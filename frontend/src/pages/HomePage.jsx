@@ -5,7 +5,7 @@ import { useProductStore } from "../stores/useProductStore";
 import FeaturedProducts from "../components/FeaturedProducts";
 import Slider from "react-slick";
 import ProductCard from "../components/ProductCard";
-import { motion } from "framer-motion"; // Importing framer-motion for animations
+import { motion } from "framer-motion"; 
 
 const categories = [
   { href: "/caps", name: "CAPS & HATS", imageUrl: "https://res.cloudinary.com/daqetpo5k/image/upload/v1729232400/d7b7zjaxtmd9lzgpmmis.avif" },
@@ -26,7 +26,7 @@ const categories = [
 
 const HomePage = () => {
   const { fetchFeaturedProducts, fetchAllProducts, products, isLoading } = useProductStore();
-  const [displayCount, setDisplayCount] = useState(12); // Initial display count
+  const [displayCount, setDisplayCount] = useState(12); 
 
   useEffect(() => {
     fetchFeaturedProducts();
@@ -34,7 +34,7 @@ const HomePage = () => {
   }, [fetchFeaturedProducts, fetchAllProducts]);
 
   const loadMoreProducts = () => {
-    setDisplayCount((prevCount) => prevCount + 12); // Load 12 more products
+    setDisplayCount((prevCount) => prevCount + 12); 
   };
 
   const NextArrow = ({ onClick }) => (

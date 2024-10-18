@@ -33,7 +33,6 @@ const AdminPage = () => {
           Admin Dashboard
         </motion.h1>
 
-        {/* Tabs Section */}
         <div className='flex flex-wrap justify-center mb-8'>
           {tabs.map((tab) => (
             <motion.button
@@ -44,8 +43,8 @@ const AdminPage = () => {
                   ? "bg-emerald-600 text-white"
                   : "bg-gray-700 text-gray-300 hover:bg-gray-600"
               } text-sm md:text-base lg:text-lg`}
-              whileHover={{ scale: 1.05 }} // Animation on hover
-              whileTap={{ scale: 0.95 }} // Animation on tap
+              whileHover={{ scale: 1.05 }} 
+              whileTap={{ scale: 0.95 }} 
             >
               <tab.icon className='mr-2 h-5 w-5 md:h-6 md:w-6' />
               {tab.label}
@@ -53,7 +52,6 @@ const AdminPage = () => {
           ))}
         </div>
 
-        {/* Content Section */}
         <div className="px-2 sm:px-4 md:px-6 lg:px-8">
           {activeTab === "create" && <CreateProductForm />}
           {activeTab === "products" && <ProductsList />}

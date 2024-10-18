@@ -4,7 +4,7 @@ import { useCartStore } from "../stores/useCartStore";
 import toast from "react-hot-toast";
 import { ShoppingCart } from "lucide-react";
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion"; // Importing motion for animations
+import { motion } from "framer-motion"; 
 
 const ProductDetail = () => {
     const { productId } = useParams();
@@ -15,8 +15,8 @@ const ProductDetail = () => {
 
     useEffect(() => {
         const loadProducts = async () => {
-            await fetchAllProducts(); // Fetch products from the store
-            setLoading(false); // Set loading to false after fetch
+            await fetchAllProducts(); 
+            setLoading(false); 
         };
 
         loadProducts();
@@ -45,9 +45,9 @@ const ProductDetail = () => {
                 {/* Product Image */}
                 <motion.div 
                     className="md:w-1/3 w-full"
-                    initial={{ opacity: 0 }} // Initial opacity for animation
-                    animate={{ opacity: 1 }} // Animate to full opacity
-                    transition={{ duration: 0.5 }} // Duration of the animation
+                    initial={{ opacity: 0 }} 
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.5 }} 
                 >
                     <img
                         src={product.image}
@@ -56,12 +56,11 @@ const ProductDetail = () => {
                     />
                 </motion.div>
 
-                {/* Product Details */}
                 <motion.div 
                     className="md:w-2/3 w-full md:pl-8"
-                    initial={{ y: 20 }} // Initial vertical position for animation
-                    animate={{ y: 0 }} // Animate to original position
-                    transition={{ duration: 0.5 }} // Duration of the animation
+                    initial={{ y: 20 }} 
+                    animate={{ y: 0 }} 
+                    transition={{ duration: 0.5 }} 
                 >
                     <h1 className="text-2xl sm:text-3xl font-bold mb-2">{product.name}</h1>
                     <p className="text-base sm:text-lg text-gray-800 mb-4">{product.description}</p>
@@ -69,8 +68,8 @@ const ProductDetail = () => {
                     <motion.button
                         className="mt-6 w-full sm:w-1/2 md:w-1/4 flex items-center justify-center bg-emerald-600 text-white px-4 py-3 rounded-lg hover:bg-emerald-700 transition duration-300"
                         onClick={handleAddToCart}
-                        whileHover={{ scale: 1.05 }} // Scale up on hover
-                        whileTap={{ scale: 0.95 }} // Scale down on tap
+                        whileHover={{ scale: 1.05 }} 
+                        whileTap={{ scale: 0.95 }} 
                     >
                         <ShoppingCart size={22} className="mr-2" />
                         Add to Cart
@@ -78,8 +77,7 @@ const ProductDetail = () => {
                 </motion.div>
             </div>
 
-            {/* Space after product details */}
-            <div className="mt-20" /> {/* You can adjust the margin here as needed */}
+            <div className="mt-20" /> 
         </div>
     );
 };

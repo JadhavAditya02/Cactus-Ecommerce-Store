@@ -14,7 +14,6 @@ const PrivacyPolicy = () => {
         At <strong>Cactus</strong>, we prioritize your privacy and security during your visit to our educational website. Please be aware that <strong>Cactus</strong> is not an actual e-commerce store, and everything on this website, including the payment process, is purely in test mode for educational purposes only.
       </p>
 
-      {/* Test Mode Section */}
       <div className="mt-8">
         <h2 className="text-2xl font-semibold mb-4">Test Mode</h2>
         <p className="text-lg mb-6">
@@ -22,7 +21,6 @@ const PrivacyPolicy = () => {
         </p>
       </div>
 
-      {/* Cookies Section */}
       <div className="mt-8">
         <h2 className="text-2xl font-semibold mb-4">Cookies</h2>
         <p className="text-lg mb-6">
@@ -30,7 +28,6 @@ const PrivacyPolicy = () => {
         </p>
       </div>
       
-      {/* Children's Privacy Section */}
       <div className="mt-8">
         <h2 className="text-2xl font-semibold mb-4">Children's Privacy</h2>
         <p className="text-lg mb-6">
@@ -38,7 +35,6 @@ const PrivacyPolicy = () => {
         </p>
       </div>
 
-      {/* Changes to Policy Section */}
       <div className="mt-8">
         <h2 className="text-2xl font-semibold mb-4">Changes to Policy</h2>
         <p className="text-lg mb-6">
@@ -46,7 +42,6 @@ const PrivacyPolicy = () => {
         </p>
       </div>
 
-      {/* Contact Us Section */}
       <div className="mt-8">
         <h2 className="text-2xl font-semibold mb-4">Contact Us</h2>
         <p className="text-lg mb-6">

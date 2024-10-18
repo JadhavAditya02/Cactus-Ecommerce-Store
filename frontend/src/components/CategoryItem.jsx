@@ -11,7 +11,6 @@ const CategoryItem = ({ category }) => {
             alt={category.name}
             loading="lazy"
           />
-          {/* Add subtle fade-in animation */}
           <div className="absolute inset-0 bg-black/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
         </div>
       </Link>

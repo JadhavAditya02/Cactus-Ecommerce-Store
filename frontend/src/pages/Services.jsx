@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 
-// ServiceCard component for reusability
 const ServiceCard = ({ title, description, initialX }) => {
   return (
     <div className="mb-8">
@@ -19,7 +18,6 @@ const ServiceCard = ({ title, description, initialX }) => {
 };
 
 const Services = () => {
-  // Define services in an array for easier management
   const services = [
     {
       title: "Clothing Collection",
