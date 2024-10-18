@@ -1,6 +1,7 @@
 import { ShoppingCart } from "lucide-react";
 import { useUserStore } from "../stores/useUserStore";
 import { useNavigate } from "react-router-dom";
+import { useCartStore } from "../stores/useCartStore";
 
 const ProductCard = ({ product }) => {
 	const { user } = useUserStore();
