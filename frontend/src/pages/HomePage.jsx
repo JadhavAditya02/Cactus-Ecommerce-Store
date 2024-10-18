@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ChevronLeft, ChevronRight, Menu } from "lucide-react"; // Use Menu from lucide-react
+import { ChevronLeft, ChevronRight } from "lucide-react"; // Remove Menu import
 import CategoryItem from "../components/CategoryItem";
 import { useProductStore } from "../stores/useProductStore";
 import FeaturedProducts from "../components/FeaturedProducts";
@@ -27,7 +27,6 @@ const categories = [
 const HomePage = () => {
   const { fetchFeaturedProducts, fetchAllProducts, products, isLoading } = useProductStore();
   const [displayCount, setDisplayCount] = useState(12); 
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false); // State for sidebar visibility
 
   useEffect(() => {
     fetchFeaturedProducts();
@@ -64,27 +63,6 @@ const HomePage = () => {
 
   return (
     <div className="relative min-h-screen text-white overflow-hidden">
-      <div className="absolute top-4 left-4 z-20">
-        <Menu size={32} className="cursor-pointer text-white hover:text-emerald-400" onClick={() => setIsSidebarOpen(!isSidebarOpen)} />
-      </div>
-
-      {/* Sidebar */}
-      {isSidebarOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-70 z-30 flex justify-start">
-          <div className="bg-gray-800 text-white w-64 p-4">
-            <h2 className="text-xl font-bold mb-4">Categories</h2>
-            <ul>
-              {categories.map((category) => (
-                <li key={category.name} className="mb-2">
-                  <a href={category.href} className="text-white hover:text-emerald-400">{category.name}</a>
-                </li>
-              ))}
-            </ul>
-            <button className="absolute top-4 right-4 text-white" onClick={() => setIsSidebarOpen(false)}>X</button>
-          </div>
-        </div>
-      )}
-
       <div className="relative z-10 mx-auto my-4 max-w-full rounded-lg overflow-hidden shadow-lg">
         <Slider {...sliderSettings}>
           {[
@@ -116,7 +94,7 @@ const HomePage = () => {
 
         <div className="flex flex-wrap gap-3.5 justify-center">
           {categories.map((category) => (
-            <div key={category.name} className="flex flex-col items-center">
+            <div key={category.name} className="flex flex-col items-center w-1/4 md:w-1/5 lg:w-1/6">
               <div className="bg-white p-1 rounded-md">
                 <CategoryItem category={category} />
               </div>

@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'; // Added useEffect and useCallback for optimization
+import { useState, useEffect, useCallback } from 'react';
 import { ShoppingCart, UserPlus, LogIn, LogOut, Lock, Menu, X } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useUserStore } from "../stores/useUserStore";
@@ -8,49 +8,44 @@ const Navbar = () => {
   const { user, logout } = useUserStore();
   const isAdmin = user?.role === "admin";
   const { cart } = useCartStore();
-  const [searchQuery, setSearchQuery] = useState(""); 
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); 
-  const navigate = useNavigate(); 
+  const [searchQuery, setSearchQuery] = useState("");
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const navigate = useNavigate();
 
   // Handle search submission
   const handleSearchSubmit = (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
     if (searchQuery.trim()) {
-      navigate(`/search?query=${encodeURIComponent(searchQuery)}`); 
-      setSearchQuery(""); 
+      navigate(`/search?query=${encodeURIComponent(searchQuery)}`);
+      setSearchQuery("");
     }
   };
 
   const ApparelsDropdown = () => {
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
-    const handleMouseEnter = () => setIsDropdownOpen(true);
-    const handleMouseLeave = () => setIsDropdownOpen(false);
-
     return (
-      <div 
-        className="relative"
-        onMouseEnter={handleMouseEnter} 
-        onMouseLeave={handleMouseLeave}
-      >
-
-        <button className="text-gray-300 hover:text-emerald-400 transition duration-300 ease-in-out">
+      <div className="relative">
+        <button
+          className="text-gray-300 hover:text-emerald-400 transition duration-300 ease-in-out"
+          onMouseEnter={() => setIsDropdownOpen(true)}
+          onMouseLeave={() => setIsDropdownOpen(false)}
+        >
           APPARELS
         </button>
 
         {isDropdownOpen && (
           <div className="absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-md transition-opacity duration-300 ease-in-out opacity-100">
-            <Link 
-              to="/category/tops" 
-              className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md" 
-              onClick={() => setIsDropdownOpen(false)} 
+            <Link
+              to="/category/tops"
+              className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md"
+              onClick={() => setIsDropdownOpen(false)}
             >
               TOP
             </Link>
-            <Link 
-              to="/category/bottoms" 
-              className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md" 
-              onClick={() => setIsDropdownOpen(false)} 
+            <Link
+              to="/category/bottoms"
+              className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md"
+              onClick={() => setIsDropdownOpen(false)}
             >
               BOTTOM
             </Link>
@@ -83,7 +78,14 @@ const Navbar = () => {
         <div className="flex flex-wrap justify-between items-center">
 
           {/* Left Column */}
-          <div className="flex items-center space-x-4"> 
+          <div className="flex items-center space-x-4">
+            <button
+              className="md:hidden text-gray-300 hover:text-emerald-400 transition duration-300"
+              onClick={toggleMobileMenu}
+            >
+              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+            
             <Link
               to="/"
               className="text-2xl font-bold text-emerald-400 items-center space-x-2 flex mr-7"
@@ -116,10 +118,6 @@ const Navbar = () => {
 
           {/* Right Column */}
           <div className="flex items-center gap-4">
-            <button className="md:hidden text-gray-300 hover:text-emerald-400 transition duration-300" onClick={toggleMobileMenu}>
-              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-
             <form onSubmit={handleSearchSubmit} className="hidden md:flex items-center">
               <input
                 type="text"
