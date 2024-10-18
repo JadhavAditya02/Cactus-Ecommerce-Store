@@ -1,6 +1,5 @@
 import { ShoppingCart } from "lucide-react";
 import { useUserStore } from "../stores/useUserStore";
-import { useCartStore } from "../stores/useCartStore";
 import { useNavigate } from "react-router-dom";
 
 const ProductCard = ({ product }) => {
