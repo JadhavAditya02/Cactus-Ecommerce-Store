@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react'; // Added useEffect and useCallback for optimization
 import { ShoppingCart, UserPlus, LogIn, LogOut, Lock, Menu, X } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useUserStore } from "../stores/useUserStore";
@@ -9,34 +9,25 @@ const Navbar = () => {
   const { user, logout } = useUserStore();
   const isAdmin = user?.role === "admin";
   const { cart } = useCartStore();
-  const [searchQuery, setSearchQuery] = useState(""); // State for search input
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); // State for mobile menu
-  const navigate = useNavigate(); // Hook for navigation
+  const [searchQuery, setSearchQuery] = useState(""); 
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); 
+  const navigate = useNavigate(); 
 
   // Handle search submission
   const handleSearchSubmit = (e) => {
-    e.preventDefault(); // Prevent form submission
+    e.preventDefault(); 
     if (searchQuery.trim()) {
-      navigate(`/search?query=${encodeURIComponent(searchQuery)}`); // Navigate to search results
-      setSearchQuery(""); // Clear search input after submission
+      navigate(`/search?query=${encodeURIComponent(searchQuery)}`); 
+      setSearchQuery(""); 
     }
   };
 
-  // Dropdown function
+  // Dropdown for Apparels
   const ApparelsDropdown = () => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-    let dropdownTimeout;
 
-    const handleMouseEnter = () => {
-      clearTimeout(dropdownTimeout);  // Cancel any pending close
-      setIsDropdownOpen(true);
-    };
-
-    const handleMouseLeave = () => {
-      dropdownTimeout = setTimeout(() => {
-        setIsDropdownOpen(false);
-      }, 200);  // Add a slight delay before closing the menu
-    };
+    const handleMouseEnter = () => setIsDropdownOpen(true);
+    const handleMouseLeave = () => setIsDropdownOpen(false);
 
     return (
       <div 
@@ -51,17 +42,16 @@ const Navbar = () => {
 
         {/* Dropdown Menu */}
         {isDropdownOpen && (
-          <div className="absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-md">
+          <div className="absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-md transition-opacity duration-300 ease-in-out opacity-100">
             <Link 
-              to="/category/tops"  // Set the correct path for "TOP"
+              to="/category/tops" 
               className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md" 
               onClick={() => setIsDropdownOpen(false)} 
             >
               TOP
             </Link>
-
             <Link 
-              to="/category/bottoms"  // Set the correct path for "BOTTOM"
+              to="/category/bottoms" 
               className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md" 
               onClick={() => setIsDropdownOpen(false)} 
             >
@@ -75,8 +65,22 @@ const Navbar = () => {
 
   // Toggle mobile menu
   const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
+    setIsMobileMenuOpen(prev => !prev);
   };
+
+  // Optimize useEffect for window resize event listener (optional)
+  const handleResize = useCallback(() => {
+    if (window.innerWidth >= 768) {
+      setIsMobileMenuOpen(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [handleResize]);
 
   return (
     <header className="fixed top-0 left-0 w-full bg-gray-900 bg-opacity-90 backdrop-blur-md shadow-lg z-40 transition-all duration-300 border-b border-emerald-800">
@@ -96,26 +100,19 @@ const Navbar = () => {
               <Link to={"/"} className="text-gray-300 hover:text-emerald-400 transition duration-300 ease-in-out">
                 HOME
               </Link>
-
               <Link to={"/category/caps"} className="text-gray-300 hover:text-emerald-400 transition duration-300 ease-in-out">
                 HATS & CAPS
               </Link>
-
               <Link to={"/category/skateboards"} className="text-gray-300 hover:text-emerald-400 transition duration-300 ease-in-out">
                 SKATEBOARDS
               </Link>
-
-              {/* Dropdown Menu */}
               <ApparelsDropdown />
-
               <Link to={"/category/eyewears"} className="text-gray-300 hover:text-emerald-400 transition duration-300 ease-in-out">
                 EYEWEAR
               </Link>
-
               <Link to={"/category/accessories"} className="text-gray-300 hover:text-emerald-400 transition duration-300 ease-in-out">
                 ACCESSORIES
               </Link>
-
               <Link to={"/aboutus"} className="text-gray-300 hover:text-emerald-400 transition duration-300 ease-in-out">
                 ABOUT US
               </Link>
@@ -136,7 +133,7 @@ const Navbar = () => {
                 placeholder="Search products..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="px-3 py-1 rounded-l-md border border-emerald-500/30 focus:outline-none focus:ring-2 focus:ring-emerald-400 text-black placeholder-gray-500" // Added text-black class
+                className="px-3 py-1 rounded-l-md border border-emerald-500/30 focus:outline-none focus:ring-2 focus:ring-emerald-400 text-black placeholder-gray-500"
               />
               <button type="submit" className="bg-emerald-600 hover:bg-emerald-500 text-white px-3 py-1 rounded-r-md transition duration-300">
                 Search
@@ -154,9 +151,7 @@ const Navbar = () => {
                 />
                 <span className="hidden sm:inline">Cart</span>
                 {cart.length > 0 && (
-                  <span
-                    className="absolute -top-2 -left-2 bg-emerald-500 text-white rounded-full px-2 py-0.5 text-xs group-hover:bg-emerald-400 transition duration-300 ease-in-out"
-                  >
+                  <span className="absolute -top-2 -left-2 bg-emerald-500 text-white rounded-full px-2 py-0.5 text-xs group-hover:bg-emerald-400 transition duration-300 ease-in-out">
                     {cart.length}
                   </span>
                 )}
@@ -210,7 +205,7 @@ const Navbar = () => {
                 placeholder="Search products..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="px-3 py-1 rounded-l-md border border-emerald-500/30 focus:outline-none focus:ring-2 focus:ring-emerald-400 text-black placeholder-gray-500" // Added text-black class
+                className="px-3 py-1 rounded-l-md border border-emerald-500/30 focus:outline-none focus:ring-2 focus:ring-emerald-400 text-black placeholder-gray-500"
               />
               <button type="submit" className="bg-emerald-600 hover:bg-emerald-500 text-white px-3 py-1 rounded-r-md transition duration-300">
                 Search

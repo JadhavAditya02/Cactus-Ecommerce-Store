@@ -2,6 +2,7 @@ import { ShoppingCart } from "lucide-react";
 import { useUserStore } from "../stores/useUserStore";
 import { useNavigate } from "react-router-dom";
 import { useCartStore } from "../stores/useCartStore";
+import { motion } from "framer-motion"; // Importing motion for animations
 
 const ProductCard = ({ product }) => {
 	const { user } = useUserStore();
@@ -12,11 +13,9 @@ const ProductCard = ({ product }) => {
 	const handleAddToCart = (event) => {
 		event.stopPropagation(); // Prevent the click from bubbling up
 		if (!user) {
-			// Redirect to /signup page if user is not logged in
-			navigate("/signup");
+			navigate("/signup"); // Redirect to /signup if not logged in
 		} else {
-			// Add to cart
-			console.log('Adding to cart:', product._id);
+			console.log('Adding to cart:', product._id); // Log adding to cart
 			addToCart(product);
 		}
 	};
@@ -24,18 +23,28 @@ const ProductCard = ({ product }) => {
 	// Handle image click with redirection logic
 	const handleImageClick = () => {
 		if (!user) {
-			navigate("/signup"); // Redirect to /signup page if user is not logged in
+			navigate("/signup"); // Redirect to /signup if not logged in
 		} else {
-			// Navigate to the product detail page if the user is logged in
-			navigate(`/product/${product._id}`); // Make sure product._id exists
+			navigate(`/product/${product._id}`); // Navigate to product detail page
 		}
 	};
 
 	return (
-		<div className='flex w-full relative flex-col overflow-hidden rounded-lg border border-gray-300 bg-white shadow-lg'>
+		<motion.div 
+			className='flex w-full relative flex-col overflow-hidden rounded-lg border border-gray-300 bg-white shadow-lg'
+			whileHover={{ scale: 1.02 }} // Animation for hover effect
+			transition={{ duration: 0.3 }} // Transition for the hover effect
+		>
 			{/* Image with add to cart functionality */}
-			<div onClick={handleImageClick} className='relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl cursor-pointer'>
-				<img className='object-cover w-full' src={product.image} alt='product image' />
+			<div 
+				onClick={handleImageClick} 
+				className='relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl cursor-pointer'
+			>
+				<img 
+					className='object-cover w-full' 
+					src={product.image} 
+					alt='product' 
+				/>
 				<div className='absolute inset-0 bg-black bg-opacity-20' />
 			</div>
 
@@ -46,15 +55,17 @@ const ProductCard = ({ product }) => {
 						<span className='text-3xl font-bold text-emerald-400'>₹{product.price}</span>
 					</p>
 				</div>
-				<button
+				<motion.button
 					className='flex items-center justify-center rounded-lg bg-emerald-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-emerald-700 focus:outline-none focus:ring-4 focus:ring-emerald-300'
 					onClick={handleAddToCart} // Call handleAddToCart on button click
+					whileHover={{ scale: 1.05 }} // Scale up on hover
+					whileTap={{ scale: 0.95 }} // Scale down on tap
 				>
 					<ShoppingCart size={22} className='mr-2' />
 					Add to cart
-				</button>
+				</motion.button>
 			</div>
-		</div>
+		</motion.div>
 	);
 };
 

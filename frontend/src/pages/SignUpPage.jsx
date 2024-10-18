@@ -6,7 +6,18 @@ import { useUserStore } from "../stores/useUserStore";
 import PasswordStrengthMeter from "../components/PasswordStrengthMeter";
 
 // Reusable Input Component
-const InputField = ({ id, type, label, value, onChange, icon: Icon, placeholder, showPasswordStrength, onFocus, onBlur }) => (
+const InputField = ({
+  id,
+  type,
+  label,
+  value,
+  onChange,
+  icon: Icon,
+  placeholder,
+  showPasswordStrength,
+  onFocus,
+  onBlur,
+}) => (
   <div>
     <label htmlFor={id} className='block text-sm font-medium text-gray-300'>
       {label}
@@ -78,7 +89,7 @@ const SignUpPage = () => {
               type='text'
               label='Full name'
               value={formData.name}
-              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+              onChange={(e) => setFormData((prev) => ({ ...prev, name: e.target.value }))}
               icon={User}
               placeholder='John Doe'
             />
@@ -87,7 +98,7 @@ const SignUpPage = () => {
               type='email'
               label='Email address'
               value={formData.email}
-              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+              onChange={(e) => setFormData((prev) => ({ ...prev, email: e.target.value }))}
               icon={Mail}
               placeholder='you@example.com'
             />
@@ -96,7 +107,7 @@ const SignUpPage = () => {
               type='password'
               label='Password'
               value={formData.password}
-              onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+              onChange={(e) => setFormData((prev) => ({ ...prev, password: e.target.value }))}
               icon={Lock}
               placeholder='••••••••'
               onFocus={() => setShowPasswordStrength(true)}
@@ -108,7 +119,7 @@ const SignUpPage = () => {
               type='password'
               label='Confirm Password'
               value={formData.confirmPassword}
-              onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
+              onChange={(e) => setFormData((prev) => ({ ...prev, confirmPassword: e.target.value }))}
               icon={Lock}
               placeholder='••••••••'
             />

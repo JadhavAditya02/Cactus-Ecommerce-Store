@@ -3,6 +3,7 @@ import ProductCard from "./ProductCard";
 import axios from "../lib/axios";
 import toast from "react-hot-toast";
 import LoadingSpinner from "./LoadingSpinner";
+import { motion } from "framer-motion"; // Added Framer Motion for animations
 
 const PeopleAlsoBought = () => {
   const [recommendations, setRecommendations] = useState([]);
@@ -13,12 +14,11 @@ const PeopleAlsoBought = () => {
   useEffect(() => {
     const fetchRecommendations = async () => {
       try {
-        const res = await axios.get("/products/recommendations");
-        setRecommendations(res.data);
+        const { data } = await axios.get("/products/recommendations");
+        setRecommendations(data);
       } catch (error) {
         toast.error(
-          error.response.data.message ||
-            "An error occurred while fetching recommendations"
+          error.response?.data.message || "An error occurred while fetching recommendations"
         );
       } finally {
         setIsLoading(false);
@@ -37,7 +37,7 @@ const PeopleAlsoBought = () => {
       else setItemsPerPage(4);
     };
 
-    handleResize();
+    handleResize(); // Initial call to set items per page
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -53,23 +53,26 @@ const PeopleAlsoBought = () => {
 
         <div className="relative">
           <div className="overflow-hidden">
-            <div
+            <motion.div
               className="flex transition-transform duration-300 ease-in-out"
               style={{
-                transform: `translateX(-${
-                  currentIndex * (100 / itemsPerPage)
-                }%)`,
+                transform: `translateX(-${currentIndex * (100 / itemsPerPage)}%)`,
               }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5 }} // Added animation for opacity
             >
               {recommendations.map((product) => (
-                <div
+                <motion.div
                   key={product._id}
                   className="w-full sm:w-1/2 lg:w-1/3 xl:w-[33.5%] flex-shrink-0 px-2"
+                  whileHover={{ scale: 1.05 }} // Added hover effect for cards
+                  whileTap={{ scale: 0.95 }} // Added tap effect for cards
                 >
                   <ProductCard product={product} />
-                </div>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>

@@ -27,22 +27,15 @@ const CategoryPage = () => {
 
   // Function to sort and filter products
   const getFilteredAndSortedProducts = () => {
-    let filteredProducts = [...products];
-
-    // Filter by price range
-    filteredProducts = filteredProducts.filter(
-      (product) => product.price >= minPrice && product.price <= maxPrice
-    );
-
-    // Apply sorting logic
-    if (sortOption === "priceAsc") {
-      filteredProducts.sort((a, b) => a.price - b.price);
-    } else if (sortOption === "priceDesc") {
-      filteredProducts.sort((a, b) => b.price - a.price);
-    } else if (sortOption === "popularity") {
-      filteredProducts.sort((a, b) => b.popularity - a.popularity);
-    }
-
+    const filteredProducts = products
+      .filter((product) => product.price >= minPrice && product.price <= maxPrice)
+      .sort((a, b) => {
+        if (sortOption === "priceAsc") return a.price - b.price;
+        if (sortOption === "priceDesc") return b.price - a.price;
+        if (sortOption === "popularity") return b.popularity - a.popularity;
+        return 0; // Default case (recommended)
+      });
+    
     return filteredProducts;
   };
 
@@ -66,21 +59,19 @@ const CategoryPage = () => {
           <div className="flex items-center">
             <label className="mr-2 text-gray-300">Price Range:</label>
             <input
-              type="text"
+              type="number"
               value={minPrice}
-              onChange={(e) => setMinPrice(Number(e.target.value))}
+              onChange={(e) => setMinPrice(Math.max(0, Number(e.target.value)))}
               className="bg-gray-700 text-white p-2 rounded mr-2 w-20 sm:w-28"
               placeholder="Min"
-              style={{ WebkitAppearance: 'none', MozAppearance: 'textfield' }} // Remove arrows
             />
             <span className="text-gray-300">to</span>
             <input
-              type="text"
+              type="number"
               value={maxPrice}
-              onChange={(e) => setMaxPrice(Number(e.target.value))}
+              onChange={(e) => setMaxPrice(Math.max(minPrice, Number(e.target.value)))}
               className="bg-gray-700 text-white p-2 rounded ml-2 w-20 sm:w-28"
               placeholder="Max"
-              style={{ WebkitAppearance: 'none', MozAppearance: 'textfield' }} // Remove arrows
             />
           </div>
 
@@ -95,6 +86,7 @@ const CategoryPage = () => {
               <option value="recommended">Recommended</option>
               <option value="priceAsc">Price: Low to High</option>
               <option value="priceDesc">Price: High to Low</option>
+              <option value="popularity">Popularity</option>
             </select>
           </div>
         </div>
@@ -112,13 +104,13 @@ const CategoryPage = () => {
             </h2>
           )}
 
-          {filteredAndSortedProducts?.slice(0, visibleCount).map((product) => (
+          {filteredAndSortedProducts.slice(0, visibleCount).map((product) => (
             <ProductCard key={product._id} product={product} />
           ))}
         </motion.div>
 
         {/* Load More Button */}
-        {filteredAndSortedProducts.length > visibleCount && filteredAndSortedProducts.length > 8 && (
+        {filteredAndSortedProducts.length > visibleCount && (
           <div className="flex justify-center mt-8">
             <button
               onClick={handleLoadMore}

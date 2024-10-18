@@ -32,7 +32,7 @@ const Footer = () => {
         href={href}
         target={href.startsWith("http") ? "_blank" : "_self"}
         rel={href.startsWith("http") ? "noopener noreferrer" : ""}
-        className="text-gray-400 hover:text-white transition duration-300"
+        className="text-gray-400 hover:text-white transition-colors duration-300 hover:underline hover:scale-105 transform"
       >
         {children}
       </a>
@@ -45,33 +45,41 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Logo and Description */}
           <div>
-            <h3 className="text-xl font-bold mb-4">CACTUS</h3>
+            <h3 className="text-xl font-bold mb-4 hover:scale-105 transform transition duration-300">
+              CACTUS
+            </h3>
             <p className="text-gray-400">Fashion That Grows With You.</p>
           </div>
 
           {/* Contact Section */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Contact Us</h4>
+            <h4 className="text-lg font-semibold mb-4 hover:scale-105 transform transition duration-300">
+              Contact Us
+            </h4>
             <address className="not-italic">
               <ul>
                 <li className="text-gray-400">
                   Email:{" "}
                   <a
                     href="mailto:support@cactus.com"
-                    className="text-gray-400 hover:text-white transition duration-300"
+                    className="text-gray-400 hover:text-white transition-colors duration-300 hover:underline"
                   >
                     support@cactus.com
                   </a>
                 </li>
                 <li className="text-gray-400">Phone: +1 234 567 890</li>
-                <li className="text-gray-400">Address: 123 Main Street, Mumbai, India</li>
+                <li className="text-gray-400">
+                  Address: 123 Main Street, Mumbai, India
+                </li>
               </ul>
             </address>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
+            <h4 className="text-lg font-semibold mb-4 hover:scale-105 transform transition duration-300">
+              Quick Links
+            </h4>
             <ul>
               {quickLinks.map((link) => (
                 <FooterLink key={link.url} href={link.url}>
@@ -83,7 +91,9 @@ const Footer = () => {
 
           {/* Social Links */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Follow Us</h4>
+            <h4 className="text-lg font-semibold mb-4 hover:scale-105 transform transition duration-300">
+              Follow Us
+            </h4>
             <ul>
               {socialLinks.map((social) => (
                 <FooterLink key={social.url} href={social.url}>
@@ -95,7 +105,9 @@ const Footer = () => {
 
           {/* Store Locator */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Store Locator</h4>
+            <h4 className="text-lg font-semibold mb-4 hover:scale-105 transform transition duration-300">
+              Store Locator
+            </h4>
             <ul>
               {storeLocations.map((location) => (
                 <FooterLink key={location.url} href={location.url}>
@@ -107,7 +119,9 @@ const Footer = () => {
 
           {/* Legal Section */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Legal</h4>
+            <h4 className="text-lg font-semibold mb-4 hover:scale-105 transform transition duration-300">
+              Legal
+            </h4>
             <ul>
               {legalLinks.map((legal) => (
                 <FooterLink key={legal.url} href={legal.url}>
@@ -124,7 +138,7 @@ const Footer = () => {
           <img
             src="/logo-stripe.png"
             alt="Stripe Payment"
-            className="h-16 mt-4 md:mt-0"
+            className="h-16 mt-4 md:mt-0 hover:scale-110 transform transition duration-300"
             loading="lazy"
           />
         </div>

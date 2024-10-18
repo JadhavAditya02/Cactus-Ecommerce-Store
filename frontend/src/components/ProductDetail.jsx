@@ -4,6 +4,7 @@ import { useCartStore } from "../stores/useCartStore";
 import toast from "react-hot-toast";
 import { ShoppingCart } from "lucide-react";
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion"; // Importing motion for animations
 
 const ProductDetail = () => {
     const { productId } = useParams();
@@ -42,27 +43,39 @@ const ProductDetail = () => {
         <div className="max-w-screen-xl mx-auto px-4 py-8 sm:py-16">
             <div className="flex flex-col md:flex-row items-start space-y-8 md:space-y-0 md:space-x-8">
                 {/* Product Image */}
-                <div className="md:w-1/3 w-full">
+                <motion.div 
+                    className="md:w-1/3 w-full"
+                    initial={{ opacity: 0 }} // Initial opacity for animation
+                    animate={{ opacity: 1 }} // Animate to full opacity
+                    transition={{ duration: 0.5 }} // Duration of the animation
+                >
                     <img
                         src={product.image}
                         alt={product.name}
-                        className="w-full h-auto rounded-lg shadow-lg max-h-[30rem] object-contain" // Ensure rounded edges are applied
+                        className="w-full h-auto rounded-lg shadow-lg max-h-[30rem] object-contain"
                     />
-                </div>
+                </motion.div>
 
                 {/* Product Details */}
-                <div className="md:w-2/3 w-full md:pl-8">
+                <motion.div 
+                    className="md:w-2/3 w-full md:pl-8"
+                    initial={{ y: 20 }} // Initial vertical position for animation
+                    animate={{ y: 0 }} // Animate to original position
+                    transition={{ duration: 0.5 }} // Duration of the animation
+                >
                     <h1 className="text-2xl sm:text-3xl font-bold mb-2">{product.name}</h1>
-                    <p className="text-base sm:text-lg text-white-800 mb-4">{product.description}</p>
+                    <p className="text-base sm:text-lg text-gray-800 mb-4">{product.description}</p>
                     <p className="text-xl sm:text-2xl font-bold text-emerald-400">₹{product.price.toFixed(2)}</p>
-                    <button
-                        className="mt-6 w-full sm:w-1/2 md:w-1/4 flex items-center justify-center bg-emerald-600 text-white px-4 py-3 rounded-lg hover:bg-emerald-700 transition duration-300" // Adjusted button for smaller screen widths
+                    <motion.button
+                        className="mt-6 w-full sm:w-1/2 md:w-1/4 flex items-center justify-center bg-emerald-600 text-white px-4 py-3 rounded-lg hover:bg-emerald-700 transition duration-300"
                         onClick={handleAddToCart}
+                        whileHover={{ scale: 1.05 }} // Scale up on hover
+                        whileTap={{ scale: 0.95 }} // Scale down on tap
                     >
                         <ShoppingCart size={22} className="mr-2" />
                         Add to Cart
-                    </button>
-                </div>
+                    </motion.button>
+                </motion.div>
             </div>
 
             {/* Space after product details */}
