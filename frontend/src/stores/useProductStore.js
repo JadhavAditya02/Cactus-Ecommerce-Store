@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { useUserStore } from '../stores/useUserStore';
+import useCartStore from '../stores/useCartStore';
 import toast from "react-hot-toast";
 import axios from "../lib/axios";
 
