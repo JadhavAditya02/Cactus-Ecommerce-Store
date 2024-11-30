@@ -2,6 +2,7 @@ import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 
 import HomePage from "./pages/HomePage";
+import WishList from "./pages/WishList";  // Newly created Wishlist page
 import SignUpPage from "./pages/SignUpPage";
 import LoginPage from "./pages/LoginPage";
 import AdminPage from "./pages/AdminPage";
@@ -63,6 +64,8 @@ function App() {
           <Route path="/category/:category" element={<CategoryPage />} />
           <Route path="/people-also-bought" element={<PeopleAlsoBought />} />
           <Route path="/product/:productId" element={<ProductDetail />} />
+          <Route path="/wishlist" element={<WishList />} />
+
           <Route path="/cart" element={user ? <CartPage /> : <Navigate to="/login" />} />
           <Route path="/purchase-success" element={user ? <PurchaseSuccessPage /> : <Navigate to="/login" />} />
           <Route path="/purchase-cancel" element={user ? <PurchaseCancelPage /> : <Navigate to="/login" />} />

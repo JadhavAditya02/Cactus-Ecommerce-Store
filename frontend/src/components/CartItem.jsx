@@ -3,7 +3,7 @@ import { useCartStore } from "../stores/useCartStore";
 import { Link } from "react-router-dom";
 
 const CartItem = ({ item }) => {
-  const { removeFromCart, updateQuantity } = useCartStore();
+  const { removeFromCart, updateQuantity, saveForLater } = useCartStore();
 
   const handleDecrease = () => {
     item.quantity > 1
@@ -61,7 +61,7 @@ const CartItem = ({ item }) => {
             {item.name}
           </p>
 
-          {/* Remove from Cart Button */}
+          {/* Actions */}
           <div className="flex items-center gap-4">
             <button
               className="inline-flex items-center text-sm font-medium text-red-400 
@@ -69,6 +69,13 @@ const CartItem = ({ item }) => {
               onClick={() => removeFromCart(item._id)}
             >
               <Trash />
+            </button>
+            <button
+              className="inline-flex items-center text-sm font-medium text-emerald-500 
+              hover:text-emerald-400 hover:underline"
+              onClick={() => saveForLater(item)}
+            >
+              Save for Later
             </button>
           </div>
         </div>

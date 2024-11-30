@@ -1,13 +1,24 @@
-import { useState, useEffect, useCallback } from 'react';
-import { ShoppingCart, UserPlus, LogIn, LogOut, Lock, Menu, X } from "lucide-react";
+import { useState, useEffect, useCallback } from "react";
+import {
+  ShoppingCart,
+  UserPlus,
+  LogIn,
+  LogOut,
+  Lock,
+  Menu,
+  X,
+  Heart,
+} from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useUserStore } from "../stores/useUserStore";
 import { useCartStore } from "../stores/useCartStore";
+import { useWishlistStore } from "../stores/useWishlistStore";
 
 const Navbar = () => {
   const { user, logout } = useUserStore();
   const isAdmin = user?.role === "admin";
   const { cart } = useCartStore();
+  const { wishlist } = useWishlistStore();
   const [searchQuery, setSearchQuery] = useState("");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -56,7 +67,7 @@ const Navbar = () => {
   };
 
   const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(prev => !prev);
+    setIsMobileMenuOpen((prev) => !prev);
   };
 
   const handleResize = useCallback(() => {
@@ -66,9 +77,9 @@ const Navbar = () => {
   }, []);
 
   useEffect(() => {
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
     };
   }, [handleResize]);
 
@@ -76,7 +87,6 @@ const Navbar = () => {
     <header className="fixed top-0 left-0 w-full bg-gray-900 bg-opacity-90 backdrop-blur-md shadow-lg z-40 transition-all duration-300 border-b border-emerald-800">
       <div className="container mx-auto px-4 py-3">
         <div className="flex flex-wrap justify-between items-center">
-
           {/* Left Column */}
           <div className="flex items-center space-x-4">
             <button
@@ -85,7 +95,7 @@ const Navbar = () => {
             >
               {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
-            
+
             <Link
               to="/"
               className="text-2xl font-bold text-emerald-400 items-center space-x-2 flex mr-7"
@@ -94,23 +104,41 @@ const Navbar = () => {
             </Link>
 
             <nav className="hidden md:flex items-center gap-4 mt-1">
-              <Link to={"/"} className="text-gray-300 hover:text-emerald-400 transition duration-300 ease-in-out">
+              <Link
+                to={"/"}
+                className="text-gray-300 hover:text-emerald-400 transition duration-300 ease-in-out"
+              >
                 HOME
               </Link>
-              <Link to={"/category/caps"} className="text-gray-300 hover:text-emerald-400 transition duration-300 ease-in-out">
+              <Link
+                to={"/category/caps"}
+                className="text-gray-300 hover:text-emerald-400 transition duration-300 ease-in-out"
+              >
                 HATS & CAPS
               </Link>
-              <Link to={"/category/skateboards"} className="text-gray-300 hover:text-emerald-400 transition duration-300 ease-in-out">
+              <Link
+                to={"/category/skateboards"}
+                className="text-gray-300 hover:text-emerald-400 transition duration-300 ease-in-out"
+              >
                 SKATEBOARDS
               </Link>
               <ApparelsDropdown />
-              <Link to={"/category/eyewears"} className="text-gray-300 hover:text-emerald-400 transition duration-300 ease-in-out">
+              <Link
+                to={"/category/eyewears"}
+                className="text-gray-300 hover:text-emerald-400 transition duration-300 ease-in-out"
+              >
                 EYEWEAR
               </Link>
-              <Link to={"/category/accessories"} className="text-gray-300 hover:text-emerald-400 transition duration-300 ease-in-out">
+              <Link
+                to={"/category/accessories"}
+                className="text-gray-300 hover:text-emerald-400 transition duration-300 ease-in-out"
+              >
                 ACCESSORIES
               </Link>
-              <Link to={"/aboutus"} className="text-gray-300 hover:text-emerald-400 transition duration-300 ease-in-out">
+              <Link
+                to={"/aboutus"}
+                className="text-gray-300 hover:text-emerald-400 transition duration-300 ease-in-out"
+              >
                 ABOUT US
               </Link>
             </nav>
@@ -118,7 +146,10 @@ const Navbar = () => {
 
           {/* Right Column */}
           <div className="flex items-center gap-4">
-            <form onSubmit={handleSearchSubmit} className="hidden md:flex items-center">
+            <form
+              onSubmit={handleSearchSubmit}
+              className="hidden md:flex items-center"
+            >
               <input
                 type="text"
                 placeholder="Search products..."
@@ -126,10 +157,26 @@ const Navbar = () => {
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="px-3 py-1 rounded-l-md border border-emerald-500/30 focus:outline-none focus:ring-2 focus:ring-emerald-400 text-black placeholder-gray-500"
               />
-              <button type="submit" className="bg-emerald-600 hover:bg-emerald-500 text-white px-3 py-1 rounded-r-md transition duration-300">
+              <button
+                type="submit"
+                className="bg-emerald-600 hover:bg-emerald-500 text-white px-3 py-1 rounded-r-md transition duration-300"
+              >
                 Search
               </button>
             </form>
+
+            <Link
+  to={user ? "/wishlist" : "/signup"}  // Redirect to /signup if not logged in
+  className="relative text-gray-300 hover:text-emerald-400 transition duration-300 ease-in-out"
+>
+  {/* Wishlist count */}
+  {wishlist.length > 0 && (
+    <span className="absolute -top-2 -left-3 bg-red-500 text-white rounded-full px-2 text-xs">
+      {wishlist.length}
+    </span>
+  )}
+  <Heart size={24} />
+</Link>
 
             {user && (
               <Link
@@ -190,7 +237,10 @@ const Navbar = () => {
         {/* Mobile Navigation Links */}
         {isMobileMenuOpen && (
           <nav className="md:hidden flex flex-col space-y-2 mt-2">
-            <form onSubmit={handleSearchSubmit} className="flex items-center mb-4">
+            <form
+              onSubmit={handleSearchSubmit}
+              className="flex items-center mb-4"
+            >
               <input
                 type="text"
                 placeholder="Search products..."
@@ -198,26 +248,47 @@ const Navbar = () => {
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="px-3 py-1 rounded-l-md border border-emerald-500/30 focus:outline-none focus:ring-2 focus:ring-emerald-400 text-black placeholder-gray-500"
               />
-              <button type="submit" className="bg-emerald-600 hover:bg-emerald-500 text-white px-3 py-1 rounded-r-md transition duration-300">
+              <button
+                type="submit"
+                className="bg-emerald-600 hover:bg-emerald-500 text-white px-3 py-1 rounded-r-md transition duration-300"
+              >
                 Search
               </button>
             </form>
-            <Link to={"/"} className="text-gray-300 hover:text-emerald-400 transition duration-300 ease-in-out">
+            <Link
+              to={"/"}
+              className="text-gray-300 hover:text-emerald-400 transition duration-300 ease-in-out"
+            >
               HOME
             </Link>
-            <Link to={"/category/caps"} className="text-gray-300 hover:text-emerald-400 transition duration-300 ease-in-out">
+            <Link
+              to={"/category/caps"}
+              className="text-gray-300 hover:text-emerald-400 transition duration-300 ease-in-out"
+            >
               HATS & CAPS
             </Link>
-            <Link to={"/category/skateboards"} className="text-gray-300 hover:text-emerald-400 transition duration-300 ease-in-out">
+            <Link
+              to={"/category/skateboards"}
+              className="text-gray-300 hover:text-emerald-400 transition duration-300 ease-in-out"
+            >
               SKATEBOARDS
             </Link>
-            <Link to={"/category/eyewears"} className="text-gray-300 hover:text-emerald-400 transition duration-300 ease-in-out">
+            <Link
+              to={"/category/eyewears"}
+              className="text-gray-300 hover:text-emerald-400 transition duration-300 ease-in-out"
+            >
               EYEWEAR
             </Link>
-            <Link to={"/category/accessories"} className="text-gray-300 hover:text-emerald-400 transition duration-300 ease-in-out">
+            <Link
+              to={"/category/accessories"}
+              className="text-gray-300 hover:text-emerald-400 transition duration-300 ease-in-out"
+            >
               ACCESSORIES
             </Link>
-            <Link to={"/aboutus"} className="text-gray-300 hover:text-emerald-400 transition duration-300 ease-in-out">
+            <Link
+              to={"/aboutus"}
+              className="text-gray-300 hover:text-emerald-400 transition duration-300 ease-in-out"
+            >
               ABOUT US
             </Link>
           </nav>

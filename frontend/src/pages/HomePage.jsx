@@ -3,6 +3,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import CategoryItem from "../components/CategoryItem";
 import { useProductStore } from "../stores/useProductStore";
 import FeaturedProducts from "../components/FeaturedProducts";
+import { useWishlistStore } from "../stores/useWishlistStore";
 import Slider from "react-slick";
 import ProductCard from "../components/ProductCard";
 import { motion } from "framer-motion";
@@ -78,6 +79,7 @@ const categories = [
 
 const HomePage = () => {
   const { fetchFeaturedProducts, fetchAllProducts, products, isLoading } = useProductStore();
+  const { wishlist } = useWishlistStore();
   const [displayCount, setDisplayCount] = useState(12);
 
   useEffect(() => {
@@ -170,6 +172,7 @@ const HomePage = () => {
             </div>
           ))}
         </div>
+
 
         <div className="mt-12">
           <hr className="border-emerald-400 mb-6" />
